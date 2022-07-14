@@ -1,0 +1,14 @@
+[flake8]
+ignore =
+    E203  # Whitespace before ':' (against PEP8)
+    E231  # Missing whitespace after ','
+    E501  # Line too long (>79 characters)
+    W503  # Line break occurred before a binary operator (against PEP8)
+
+max-line-length = 119
+exclude =
+    static,
+    .git,
+    __pycache__,
+    venv,
+    env,
