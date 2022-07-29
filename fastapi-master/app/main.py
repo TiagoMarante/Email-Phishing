@@ -1,4 +1,5 @@
 import imp
+import json
 from typing import Optional, Set, Dict
 from fastapi import FastAPI, Query, Path
 from pydantic import BaseModel, Json
@@ -22,5 +23,5 @@ async def get_health_status():
 @app.post("/email/")
 async def post_email_(email: Email):
     content = email.email
-    email_analysis(content)
-    return to_json("Email")
+    res = email_analysis(content)
+    return to_json(res)

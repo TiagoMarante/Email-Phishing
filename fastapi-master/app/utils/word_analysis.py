@@ -1,7 +1,10 @@
+import imp
 from functionwords import FunctionWords
 from lexicalrichness import LexicalRichness
+from app.models.response import Response_email
 import numpy as np
 import joblib
+from pydantic import EmailStr
 
 def function_words(text):
     counter_0, counter_1 = 0,0
@@ -76,7 +79,9 @@ def email_analysis(text):
     model = joblib.load("../fastapi-master/app/ML model/trainedForest.joblib")
 
     is_spam = model.predict_proba(np.array([array_to_convert]))
-    print(is_spam)
+    
+    normal, phishing = is_spam[0]
 
-
-    print(array_to_convert)
+    res = Response_email(normal, phishing, "")
+    
+    return res.to_json()
