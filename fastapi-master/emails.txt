@@ -1,9 +1,3 @@
-phishing:
-
 {
-   "email":"Hello dear tiago, Unfortunately we must to inform you that someone 
-   just tried to access in your account. Yours bank account might be compromised. 
-   We truthly advice you to please change your password in the link bellow 
-   'https://notfakebank.com/reset-password'. If it was you, please forget about the 
-   existence of this email. Best regards, NotfakeBank"
+   "email":"Hello dear tiago, Unfortunately we must to inform you that someone just tried to access in your account. Yours bank account might be compromised. We truthly advice you to please change your password in the link bellow 'https://notfakebank.com/reset-password'. If it was you, please forget about the existence of this email. Best regards, NotfakeBank"
 }

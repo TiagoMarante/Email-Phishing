@@ -2,4 +2,5 @@
 set -e
 
 #. /venv/bin/activate
-uvicorn app.main:app --reload --host=0.0.0.0 --proxy-headers
+
+gunicorn app.main:app -b localhost:8001 -k uvicorn.workers.UvicornWorker --workers 4
