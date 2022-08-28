@@ -340,3 +340,7 @@ dmypy.json
 
 # Cython debug symbols
 cython_debug/
+
+
+# Mac temporary saved files
+.DS_Store
