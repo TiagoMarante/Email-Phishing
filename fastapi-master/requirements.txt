@@ -5,3 +5,8 @@ flake8
 pip>=21.3.1,<24.0.0
 functionwords
 lexicalrichness
+beautifulsoup4==4.11.1
+regex==2022.4.24
+requests==2.27.1
+urllib3==1.26.9
+websockets==10.3

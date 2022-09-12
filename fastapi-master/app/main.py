@@ -7,10 +7,13 @@ from pydantic import BaseModel, Json
 
 # External Packages
 from app.models.email import Email
+from app.models.url import Url
+from app.utils.site_analyser import url_analyser
 from app.utils.utils import to_json
 from app.utils.word_analysis import *
 
-model = joblib.load("../fastapi-master/app/ML model/trainedForest.joblib")
+model_email = joblib.load("../fastapi-master/app/ML model/trainedForest.joblib")
+model_url = joblib.load("../fastapi-master/app/ML model/trained_Forest_tunned.joblib")
 
 app = FastAPI()
 
@@ -23,5 +26,12 @@ async def get_health_status():
 @app.post("/email/")
 async def post_email(email: Email):
     content = email.email
-    res = email_analysis(content, model)
+    res = email_analysis(content, model_email)
+    return to_json(res)
+
+
+@app.post("/url/")
+async def post_url(url: Url):
+    content = url.url
+    res = url_analyser(content, model_url)
     return to_json(res)

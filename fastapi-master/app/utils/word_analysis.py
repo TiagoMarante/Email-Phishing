@@ -76,8 +76,6 @@ def email_analysis(text, loaded_model):
     array_to_convert.append(unique_words)
 
     model = loaded_model
-    # model = joblib.load("../fastapi-master/app/ML model/trainedForest.joblib")
-
     is_spam = model.predict_proba(np.array([array_to_convert]))
 
     normal, phishing = is_spam[0]
