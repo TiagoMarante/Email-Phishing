@@ -1,12 +1,14 @@
-version: '3.9'
+version: "3.9"
+
 services:
-    web:
+    api:
         build: .
-        ports:
-            - "8000:8000"
+        image: kaneai/fastapi-reload:v1
+        container_name: fastapi-container
+        restart: always
+        env_file:
+            - .env
         volumes:
-            - .:/app
-        environment:
-            FASTAPI_ENV: development
-    redis:
-        image: "redis:alpine"
+            - ./server:/server
+        ports:
+            - "85:85"

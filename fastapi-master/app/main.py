@@ -12,8 +12,8 @@ from app.utils.site_analyser import url_analyser
 from app.utils.utils import to_json
 from app.utils.word_analysis import *
 
-model_email = joblib.load("../fastapi-master/app/ML model/trainedForest.joblib")
-model_url = joblib.load("../fastapi-master/app/ML model/trained_Forest_tunned.joblib")
+model_email = joblib.load("app/ML model/trainedForest.joblib")
+model_url = joblib.load("app/ML model/trained_Forest_tunned.joblib")
 
 app = FastAPI()
 
