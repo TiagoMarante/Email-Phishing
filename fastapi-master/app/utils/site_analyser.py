@@ -312,38 +312,39 @@ def get_hostname_from_url(url):
 
 
 def url_analyser(url, model):
+
     try:
         soup = BeautifulSoup(urllib.request.urlopen(url), 'html.parser')
     except:
-        return prediction_result([-1])
+        return prediction_result([-9])
 
     status = []
     hostname = get_hostname_from_url(url)
 
     status.append(having_ip_address(url))
-    print_debug("having_ip_address(url) ", having_ip_address(url))
+    # print_debug("having_ip_address(url) ", having_ip_address(url))
 
     status.append(url_length(url))
-    print_debug("(url_length(url)) ", (url_length(url)))
+    # print_debug("(url_length(url)) ", (url_length(url)))
 
     status.append(shortening_service(url))
-    print_debug("shortening_service(url) ", shortening_service(url))
+    # print_debug("shortening_service(url) ", shortening_service(url))
 
     status.append(having_at_symbol(url))
-    print_debug("having_at_symbol(url) ", having_at_symbol(url))
+    # print_debug("having_at_symbol(url) ", having_at_symbol(url))
 
     status.append(double_slash_redirecting(url))
-    print_debug("double_slash_redirecting(url) ",
-                double_slash_redirecting(url))
+    # print_debug("double_slash_redirecting(url) ",
+    # double_slash_redirecting(url))
 
     status.append(prefix_suffix(hostname))
-    print_debug("prefix_suffix(hostname) ", prefix_suffix(hostname))
+    # print_debug("prefix_suffix(hostname) ", prefix_suffix(hostname))
 
     status.append(having_sub_domain(url))
-    print_debug("having_sub_domain(url) ", having_sub_domain(url))
+    # print_debug("having_sub_domain(url) ", having_sub_domain(url))
 
     status.append(web_traffic(url))
-    print_debug("SSLfinal_State(url) ", web_traffic(url))
+    # print_debug("SSLfinal_State(url) ", web_traffic(url))
 
     dns = 1
     try:
@@ -352,61 +353,61 @@ def url_analyser(url, model):
         dns = -1
 
     status.append(-1 if dns == -1 else domain_registration_length(domain))
-    print_debug("domain_registration_length ", -1 if dns == -
-                1 else domain_registration_length(domain))
+    # print_debug("domain_registration_length ", -1 if dns == -
+    # 1 else domain_registration_length(domain))
 
     status.append(favicon(url, soup, hostname))
-    print_debug("favicon(url, soup, hostname) ", favicon(url, soup, hostname))
+    # print_debug("favicon(url, soup, hostname) ", favicon(url, soup, hostname))
 
     status.append(https_token(url))
-    print_debug("https_token(url) ", https_token(url))
+    # print_debug("https_token(url) ", https_token(url))
 
     status.append(request_url(url, soup, hostname))
-    print_debug("request_url(url, soup, hostname) ",
-                request_url(url, soup, hostname))
+    # print_debug("request_url(url, soup, hostname) ",
+    # request_url(url, soup, hostname))
 
     status.append(url_of_anchor(url, soup, hostname))
-    print_debug("url_of_anchor(url, soup, hostname) ",
-                url_of_anchor(url, soup, hostname))
+    # print_debug("url_of_anchor(url, soup, hostname) ",
+    # url_of_anchor(url, soup, hostname))
 
     status.append(links_in_tags(url, soup, hostname))
-    print_debug("links_in_tags(url, soup, hostname) ",
-                links_in_tags(url, soup, hostname))
+    # print_debug("links_in_tags(url, soup, hostname) ",
+    # links_in_tags(url, soup, hostname))
 
     status.append(sfh(url, soup, hostname))
-    print_debug("sfh(url, soup, hostname) ", sfh(url, soup, hostname))
+    # print_debug("sfh(url, soup, hostname) ", sfh(url, soup, hostname))
 
     status.append(submitting_to_email(soup))
-    print_debug("submitting_to_email(soup) ", submitting_to_email(soup))
+    # print_debug("submitting_to_email(soup) ", submitting_to_email(soup))
 
     status.append(-1 if dns == -1 else abnormal_url(domain, url))
-    print_debug("abnormal_url(domain, url) ",
-                (-1 if dns == -1 else abnormal_url(domain, url)))
+    # print_debug("abnormal_url(domain, url) ",
+    # (-1 if dns == -1 else abnormal_url(domain, url)))
 
     status.append(i_frame(soup))
-    print_debug("i_frame(soup) ", i_frame(soup))
+    # print_debug("i_frame(soup) ", i_frame(soup))
 
     status.append(-1 if dns == -1 else age_of_domain(domain))
-    print_debug("age_of_domain(domain) ", -
-                1 if dns == -1 else age_of_domain(domain))
+    # print_debug("age_of_domain(domain) ", -
+    # 1 if dns == -1 else age_of_domain(domain))
 
     status.append(dns)
-    print_debug("dns ", dns)
+    # print_debug("dns ", dns)
 
     status.append(web_traffic(url))
-    print_debug("web_traffic(url) ", web_traffic(url))
+    # print_debug("web_traffic(url) ", web_traffic(url))
 
     alexa_rank, html_response = alexa_rank_page_rank(url)
 
     status.append(page_rank(html_response))
-    print_debug("page_rank(html_response) ", page_rank(html_response))
+    # print_debug("page_rank(html_response) ", page_rank(html_response))
 
     status.append(global_rank(alexa_rank))
-    print_debug("global_rank(alexa_rank) ", global_rank(alexa_rank))
+    # print_debug("global_rank(alexa_rank) ", global_rank(alexa_rank))
 
     status.append(statistical_report(url, hostname))
-    print_debug("statistical_report(url, hostname) ",
-                statistical_report(url, hostname))
+    # print_debug("statistical_report(url, hostname) ",
+    # statistical_report(url, hostname))
 
     prediction = model.predict(np.array([status]))
     print("prediction", prediction)

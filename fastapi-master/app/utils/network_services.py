@@ -68,5 +68,7 @@ def prediction_result(value):
 
     if prediction == 1:
         return '{"message": "URL is safe"}'
+    elif prediction == -9:
+        return '{"message": "The following website doesnt allow to run the program or its down"}'
     else:
         return '{"message": "URL is not safe, traces of Phishing detected"}'
